@@ -69,7 +69,25 @@ const linkedList = () => {
         }
     }
 
-    return { append, prepend, getHead, getTail, getSize, getNodeAt, popNode };
+    function containsValue(recValue) {
+        let currentNode = getHead();
+        while (currentNode) {
+            if (currentNode.value === recValue) return true;
+            currentNode = currentNode.next;
+        }
+        return false;
+    }
+
+    return {
+        append,
+        prepend,
+        getHead,
+        getTail,
+        getSize,
+        getNodeAt,
+        popNode,
+        containsValue,
+    };
 };
 
 const node = (value = null, next = null) => {
@@ -99,3 +117,4 @@ console.log(myList.getHead());
 console.log(myList.getSize());
 console.log(myList.getTail());
 console.log(myList.getNodeAt(0));
+console.log(myList.containsValue("3"));

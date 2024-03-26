@@ -6,20 +6,34 @@ const linkedList = () => {
     }
 
     function append(node) {
-        const newNode = node;
+        const newTail = node;
         let currentNode = head;
         if (currentNode === null) {
-            currentNode = newNode;
+            currentNode = newTail;
             head = currentNode;
         } else {
             while (currentNode.next) {
                 currentNode = currentNode.next;
             }
-            currentNode.next = newNode;
+            currentNode.next = newTail;
         }
     }
 
-    return { append, getHead };
+    function prepend(node) {
+        const newHead = node;
+        let currentNode = head;
+        if (currentNode === null) {
+            currentNode = newHead;
+            head = currentNode;
+        } else {
+            newHead.next = currentNode;
+            head = newHead;
+        }
+    }
+
+    
+
+    return { append, prepend, getHead };
 };
 
 const node = (value = null, next = null) => {
@@ -42,10 +56,7 @@ myList.append(node1);
 myList.append(node2);
 myList.append(node3);
 myList.append(node4);
-myList.append(node5);
-myList.append(node6);
-myList.append(node7);
-myList.append(node8);
-myList.append(node9);
+myList.prepend(node6);
+myList.prepend(node9);
 
 console.log(myList.getHead());

@@ -46,7 +46,16 @@ const linkedList = () => {
         size++;
     }
 
-    return { append, prepend, getHead, getTail, getSize };
+    function getNodeAt(index) {
+        if (index > getSize() - 1 || index < 0) return null;
+        let currentNode = getHead();
+        for (let i = 1; i <= index; i++) {
+            currentNode = currentNode.next;
+        }
+        return currentNode;
+    }
+
+    return { append, prepend, getHead, getTail, getSize, getNodeAt };
 };
 
 const node = (value = null, next = null) => {
@@ -75,3 +84,4 @@ myList.prepend(node9);
 console.log(myList.getHead());
 console.log(myList.getSize());
 console.log(myList.getTail());
+console.log(myList.getNodeAt(0));

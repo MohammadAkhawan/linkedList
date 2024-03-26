@@ -1,9 +1,14 @@
 const linkedList = () => {
     let head = null;
+    let tail = null;
     let size = 0;
 
     function getHead() {
         return head;
+    }
+
+    function getTail() {
+        return tail;
     }
 
     function getSize() {
@@ -16,11 +21,13 @@ const linkedList = () => {
         if (currentNode === null) {
             currentNode = newTail;
             head = currentNode;
+            tail = currentNode;
         } else {
             while (currentNode.next) {
                 currentNode = currentNode.next;
             }
             currentNode.next = newTail;
+            tail = newTail;
         }
         size++;
     }
@@ -31,6 +38,7 @@ const linkedList = () => {
         if (currentNode === null) {
             currentNode = newHead;
             head = currentNode;
+            tail = currentNode;
         } else {
             newHead.next = currentNode;
             head = newHead;
@@ -38,7 +46,7 @@ const linkedList = () => {
         size++;
     }
 
-    return { append, prepend, getHead, getSize };
+    return { append, prepend, getHead, getTail, getSize };
 };
 
 const node = (value = null, next = null) => {
@@ -66,3 +74,4 @@ myList.prepend(node9);
 
 console.log(myList.getHead());
 console.log(myList.getSize());
+console.log(myList.getTail());

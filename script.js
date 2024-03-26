@@ -17,7 +17,7 @@ const linkedList = () => {
 
     function append(node) {
         const newTail = node;
-        let currentNode = head;
+        let currentNode = getHead();
         if (currentNode === null) {
             currentNode = newTail;
             head = currentNode;
@@ -34,7 +34,7 @@ const linkedList = () => {
 
     function prepend(node) {
         const newHead = node;
-        let currentNode = head;
+        let currentNode = getHead();
         if (currentNode === null) {
             currentNode = newHead;
             head = currentNode;
@@ -55,7 +55,21 @@ const linkedList = () => {
         return currentNode;
     }
 
-    return { append, prepend, getHead, getTail, getSize, getNodeAt };
+    function popNode() {
+        let tailNode = getTail();
+        let currentNode = getHead();
+        if (tailNode === null) return;
+        else {
+            while (currentNode.next !== tailNode) {
+                currentNode = currentNode.next;
+            }
+            currentNode.next = null;
+            tail = currentNode;
+            size--;
+        }
+    }
+
+    return { append, prepend, getHead, getTail, getSize, getNodeAt, popNode };
 };
 
 const node = (value = null, next = null) => {
@@ -74,12 +88,12 @@ const node9 = node("9");
 
 const myList = linkedList();
 
-myList.append(node1);
-myList.append(node2);
 myList.append(node3);
 myList.append(node4);
-myList.prepend(node6);
-myList.prepend(node9);
+myList.prepend(node2);
+myList.prepend(node1);
+
+myList.popNode();
 
 console.log(myList.getHead());
 console.log(myList.getSize());

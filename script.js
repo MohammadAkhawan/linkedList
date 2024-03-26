@@ -78,6 +78,17 @@ const linkedList = () => {
         return false;
     }
 
+    function findIndex(recValue) {
+        let currentNode = getHead();
+        let recIndex = 0;
+        while (currentNode) {
+            recIndex++;
+            if (currentNode.value === recValue) return recIndex - 1;
+            currentNode = currentNode.next;
+        }
+        return null;
+    }
+
     return {
         append,
         prepend,
@@ -87,6 +98,7 @@ const linkedList = () => {
         getNodeAt,
         popNode,
         containsValue,
+        findIndex,
     };
 };
 
@@ -118,3 +130,4 @@ console.log(myList.getSize());
 console.log(myList.getTail());
 console.log(myList.getNodeAt(0));
 console.log(myList.containsValue("3"));
+console.log(myList.findIndex("4"));

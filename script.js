@@ -89,6 +89,24 @@ const linkedList = () => {
         return null;
     }
 
+    function toString() {
+        let currentNode = getHead();
+        let nodeString = "";
+        if (currentNode === null) {
+            nodeString = "Empty Node!";
+            return nodeString;
+        }
+        while (currentNode) {
+            if (currentNode === getHead()) nodeString += "(head)";
+            nodeString += `(${currentNode.value})`;
+            if (currentNode === getTail()) nodeString += "(tail)";
+            nodeString += " -> ";
+            currentNode = currentNode.next;
+        }
+        nodeString += "null";
+        return nodeString;
+    }
+
     return {
         append,
         prepend,
@@ -99,6 +117,7 @@ const linkedList = () => {
         popNode,
         containsValue,
         findIndex,
+        toString,
     };
 };
 
@@ -131,3 +150,4 @@ console.log(myList.getTail());
 console.log(myList.getNodeAt(0));
 console.log(myList.containsValue("3"));
 console.log(myList.findIndex("4"));
+console.log(myList.toString());
